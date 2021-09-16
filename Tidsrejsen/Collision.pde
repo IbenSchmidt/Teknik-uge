@@ -25,8 +25,9 @@ class CollisionDetection {
   CollisionDetection () {
   }
 
-  void updateHitBoxObjects(int id, PVector pos, PVector size) {
+  int updateHitBoxObjects(int id, PVector pos, PVector size) {
     hitBoxObjects.add(new HitBoxObject(id, pos, size));
+    return hitBoxObjects.size() - 1;
   }
 
   boolean collide(int id, PVector pos, PVector size) {

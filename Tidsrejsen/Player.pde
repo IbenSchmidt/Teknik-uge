@@ -4,19 +4,50 @@ class Player extends CollisionDetection {
   String imageName;
   int id;
   int points;
+  int hitBoxObjIdx; // Indekset hvor denne sprite ligger
 
   Player (PVector pos_, PVector size_, int id_) {
     pos = pos_;
     size = size_;
     id = id_;
 
-    super.updateHitBoxObjects(id, pos, size);
+    hitBoxObjIdx = updateHitBoxObjects(id, pos, size);
   }
 
   void update () {
     rect(pos.x, pos.y, size.x, size.y);
-    if (super.collide(id, pos, size)) {
-      // Gør noget her..
+  }
+
+  void moveUp() {
+    
+    if (collide(id, pos, size)) {
+      // println(random(1));
+    } else {
+      pos.y -= vel.y;
+    }
+  }
+
+  void moveDown() {
+    if (collide(id, pos, size)) {
+      // println(random(1));
+    } else {
+      pos.y += vel.y;
+    }
+  }
+
+  void moveLeft() {
+    if (collide(id, pos, size)) {
+      pos.x += vel.x;
+    } else {
+      pos.x -= vel.x;
+    }
+  }
+
+  void moveRight() {
+    if (collide(id, pos, size)) {
+      pos.x -= vel.x;
+    } else {
+      pos.x += vel.x;
     }
   }
 }

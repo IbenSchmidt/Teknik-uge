@@ -57,28 +57,28 @@ void keyReleased () {
 
 void controls () {
   if (w) {
-    p1.pos.y -= p1.vel.y;
+    p1.moveUp();
   }
   if (s) {
-    p1.pos.y += p1.vel.y;
+    p1.moveDown();
   }
   if (d) {
-    p1.pos.x += p1.vel.x;
+    p1.moveRight();
   }
   if (a) {
-    p1.pos.x -= p1.vel.x;
+    p1.moveLeft();
   }
 
   if (up) {
-    p2.pos.y -= p2.vel.y;
+    p2.moveUp();
   }
   if (down) {
-    p2.pos.y += p2.vel.y;
+    p2.moveDown();
   }
   if (right) {
-    p2.pos.x += p2.vel.x;
+    p2.moveRight();
   }
   if (left) {
-    p2.pos.x -= p2.vel.x;
+    p2.moveLeft();
   }
 }
