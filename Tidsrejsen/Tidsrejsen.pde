@@ -3,7 +3,6 @@ Player p2;
 
 void setup () {
   fullScreen();
-  // size(1100, 900);
   frameRate(60);
 
   p1 = new Player(new PVector(50, 50), new PVector(50, 50), 0);
