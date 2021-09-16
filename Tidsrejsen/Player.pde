@@ -11,43 +11,51 @@ class Player extends CollisionDetection {
     size = size_;
     id = id_;
 
-    hitBoxObjIdx = updateHitBoxObjects(id, pos, size);
+    hitBoxObjIdx = addHitBoxObject(id, pos, size);
   }
 
   void update () {
     rect(pos.x, pos.y, size.x, size.y);
+    updateHitBoxObject(hitBoxObjIdx, pos, size);
   }
 
   void moveUp() {
-    
-    if (collide(id, pos, size)) {
-      // println(random(1));
-    } else {
+    PVector newPos = pos;
+    newPos.y -= vel.y;
+    if (!collide(id, newPos, size)) {
       pos.y -= vel.y;
-    }
-  }
-
-  void moveDown() {
-    if (collide(id, pos, size)) {
-      // println(random(1));
     } else {
       pos.y += vel.y;
     }
   }
 
-  void moveLeft() {
-    if (collide(id, pos, size)) {
-      pos.x += vel.x;
+  void moveDown() {
+    PVector newPos = pos;
+    newPos.y += vel.y;
+    if (!collide(id, newPos, size)) {
+      pos.y += vel.y;
     } else {
+      pos.y -= vel.y;
+    }
+  }
+
+  void moveLeft() {
+    PVector newPos = pos;
+    newPos.x -= vel.x;
+    if (!collide(id, newPos, size)) {
       pos.x -= vel.x;
+    } else {
+      pos.x += vel.x;
     }
   }
 
   void moveRight() {
-    if (collide(id, pos, size)) {
-      pos.x -= vel.x;
-    } else {
+    PVector newPos = pos;
+    newPos.x += vel.x;
+    if (!collide(id, newPos, size)) {
       pos.x += vel.x;
+    } else {
+      pos.x -= vel.x;
     }
   }
 }
