@@ -1,5 +1,5 @@
-
 ArrayList<HitBoxObject> hitBoxObjects = new ArrayList<HitBoxObject>();
+
 class HitBoxObject {
   int id;
   float x1, x2, y1, y2;
@@ -25,9 +25,15 @@ class CollisionDetection {
   CollisionDetection () {
   }
 
-  int updateHitBoxObjects(int id, PVector pos, PVector size) {
+  int addHitBoxObject(int id, PVector pos, PVector size) {
     hitBoxObjects.add(new HitBoxObject(id, pos, size));
     return hitBoxObjects.size() - 1;
+  }
+  
+  void updateHitBoxObject(int idx, PVector pos, PVector size) {
+    HitBoxObject obj = hitBoxObjects.get(idx);
+    obj.update(pos, size);
+    
   }
 
   boolean collide(int id, PVector pos, PVector size) {
@@ -44,8 +50,6 @@ class CollisionDetection {
         if (pos.y >= obj.y1 && pos.y <= obj.y2 || pos.y + size.y >= obj.y1 && pos.y + size.y <= obj.y2) {
           yCollide = true;
         }
-      } else {
-        obj.update(pos, size);
       }
     }
     return xCollide && yCollide;
