@@ -1,7 +1,9 @@
 Player p1;
 Player p2;
-PImage startside;
 
+Hunger hunger;
+
+PImage startside;
 
 void setup () {
   size(1396,786);
@@ -9,6 +11,8 @@ void setup () {
   startside = loadImage("images/Startside.png");
   p1 = new Player(new PVector(50, 50), new PVector(50, 50), 0);
   p2 = new Player(new PVector(width+50, height+50), new PVector(50, 50), 1);
+  
+  hunger = new Hunger(new PVector(250, 250), new PVector(50, 50), 2);
 }
 
 void draw () {
@@ -16,6 +20,8 @@ void draw () {
 
   p1.update();
   p2.update();
+  
+  hunger.update();
   
   controls();
 }

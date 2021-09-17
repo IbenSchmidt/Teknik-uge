@@ -10,7 +10,7 @@ class Player extends CollisionDetection {
     size = size_;
     id = id_;
 
-    hitBoxObjIdx = addHitBoxObject(id, pos, size);
+    hitBoxObjIdx = addHitBoxObject(id, pos, size, "player", new Runnable() { public void run() {}});
   }
 
   void update () {
@@ -21,10 +21,10 @@ class Player extends CollisionDetection {
   void moveUp() {
     PVector newPos = pos;
     newPos.y -= vel.y;
-    if (collide(id, newPos, size)) {
+    if (collide(id, newPos, size, "player")) {
       do {
         pos.y += vel.y;
-      } while (collide(id, newPos, size));
+      } while (collide(id, newPos, size, "player"));
     } else {
       pos.y -= vel.y;
     }
@@ -33,10 +33,10 @@ class Player extends CollisionDetection {
   void moveDown() {
     PVector newPos = pos;
     newPos.y += vel.y;
-    if (collide(id, newPos, size)) {
+    if (collide(id, newPos, size, "player")) {
       do {
         pos.y -= vel.y;
-      } while (collide(id, newPos, size));
+      } while (collide(id, newPos, size, "player"));
     } else {
       pos.y += vel.y;
     }
@@ -45,10 +45,10 @@ class Player extends CollisionDetection {
   void moveLeft() {
     PVector newPos = pos;
     newPos.x -= vel.x;
-    if (collide(id, newPos, size)) {
+    if (collide(id, newPos, size, "player")) {
       do{
         pos.x += vel.x;
-      } while (collide(id, newPos, size));
+      } while (collide(id, newPos, size, "player"));
     } else {
       pos.x -= vel.x;
     }
@@ -57,10 +57,10 @@ class Player extends CollisionDetection {
   void moveRight() {
     PVector newPos = pos;
     newPos.x += vel.x;
-    if (collide(id, newPos, size)) {
+    if (collide(id, newPos, size, "player")) {
       do{
         pos.x -= vel.x;
-      } while (collide(id, newPos, size));
+      } while (collide(id, newPos, size, "player"));
     } else {
       pos.x += vel.x;
     }
