@@ -21,6 +21,7 @@ class HitBoxObject {
 }
 
 class CollisionDetection {
+  int id;
   PVector pos, size;
   CollisionDetection () {
   }
@@ -40,6 +41,8 @@ class CollisionDetection {
     boolean xCollide = false;
     boolean yCollide = false;
     for (HitBoxObject obj : hitBoxObjects) {
+      xCollide = false;
+      yCollide = false;
       if (obj.id != id) {
         // Tjek om der er collision på x-aksen
         if (pos.x >= obj.x1 && pos.x <= obj.x2 || pos.x + size.x >= obj.x1 && pos.x + size.x <= obj.x2) {
@@ -51,7 +54,8 @@ class CollisionDetection {
           yCollide = true;
         }
       }
+      if (xCollide && yCollide) return true;
     }
-    return xCollide && yCollide;
+    return false;
   }
 }
