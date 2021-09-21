@@ -3,15 +3,13 @@ class Player extends CollisionDetection {
   PVector vel = new PVector(2, 2);
   String imageName;
   int points;
-  int hitBoxObjIdx; // Indekset hvor denne sprite ligger
 
   Player (PVector pos_, PVector size_, int id_) {
     pos = pos_;
     size = size_;
     id = id_;
 
-    Runnable customRunnable = new Runnable() { public void run() {}};
-    super.init(id_, pos, size, "player", customRunnable);
+    super.init(id_, pos, size, "player");
   }
 
   void customDraw() {
@@ -21,10 +19,10 @@ class Player extends CollisionDetection {
   void moveUp() {
     PVector newPos = pos;
     newPos.y -= vel.y;
-    if (collide(id, newPos, size, "player")) {
+    if (collide(this, newPos, size, "player")) {
       do {
         pos.y += vel.y;
-      } while (collide(id, newPos, size, "player"));
+      } while (collide(this, newPos, size, "player"));
     } else {
       pos.y -= vel.y;
     }
@@ -33,10 +31,10 @@ class Player extends CollisionDetection {
   void moveDown() {
     PVector newPos = pos;
     newPos.y += vel.y;
-    if (collide(id, newPos, size, "player")) {
+    if (collide(this, newPos, size, "player")) {
       do {
         pos.y -= vel.y;
-      } while (collide(id, newPos, size, "player"));
+      } while (collide(this, newPos, size, "player"));
     } else {
       pos.y += vel.y;
     }
@@ -45,10 +43,10 @@ class Player extends CollisionDetection {
   void moveLeft() {
     PVector newPos = pos;
     newPos.x -= vel.x;
-    if (collide(id, newPos, size, "player")) {
+    if (collide(this, newPos, size, "player")) {
       do{
         pos.x += vel.x;
-      } while (collide(id, newPos, size, "player"));
+      } while (collide(this, newPos, size, "player"));
     } else {
       pos.x -= vel.x;
     }
@@ -57,10 +55,10 @@ class Player extends CollisionDetection {
   void moveRight() {
     PVector newPos = pos;
     newPos.x += vel.x;
-    if (collide(id, newPos, size, "player")) {
+    if (collide(this, newPos, size, "player")) {
       do{
         pos.x -= vel.x;
-      } while (collide(id, newPos, size, "player"));
+      } while (collide(this, newPos, size, "player"));
     } else {
       pos.x += vel.x;
     }

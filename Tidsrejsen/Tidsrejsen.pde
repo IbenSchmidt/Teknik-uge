@@ -14,10 +14,7 @@ void setup () {
   p2 = new Player(new PVector(150, 150), new PVector(50, 50), 1);
   
   hunger = new Hunger(new PVector(250, 250), new PVector(50, 50), 2);
-  
-  hitBoxObjects.add(p1);
-  hitBoxObjects.add(p2);
-  hitBoxObjects.add(hunger);
+ 
 }
 
 void draw () {
