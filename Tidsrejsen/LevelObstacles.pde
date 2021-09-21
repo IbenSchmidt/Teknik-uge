@@ -2,14 +2,14 @@
  */
 
 
-class LevelObstacle extends CollisionDetection {
+class LevelObstacle extends GameObject {
   int id;
   PVector pos, size;
   String imageName;
 }
 
-class Hunger extends LevelObstacle {
-  Hunger (PVector pos_, PVector size_, int id_) {
+class Food extends LevelObstacle {
+  Food (PVector pos_, PVector size_, int id_) {
     id = id_;
     pos = pos_;
     size = size_;

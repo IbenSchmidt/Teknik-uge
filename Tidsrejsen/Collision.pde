@@ -1,12 +1,12 @@
-ArrayList<CollisionDetection> hitBoxObjects = new ArrayList<CollisionDetection>();
+ArrayList<GameObject> hitBoxObjects = new ArrayList<GameObject>();
 
-class CollisionDetection {
+class GameObject {
   int id;
   PVector pos, size;
   float x1, x2, y1, y2;
   String type;
 
-  CollisionDetection () {
+  GameObject () {
   }
 
   void init(int id_, PVector pos_, PVector size_, String type_) {
@@ -42,10 +42,10 @@ class CollisionDetection {
     
   }
   
-  boolean collide(CollisionDetection obj1, PVector pos, PVector size, String type) {
+  boolean collide(GameObject obj1, PVector pos, PVector size, String type) {
     boolean xCollide = false;
     boolean yCollide = false;
-    for (CollisionDetection obj2 : hitBoxObjects) {
+    for (GameObject obj2 : hitBoxObjects) {
       xCollide = false;
       yCollide = false;
       println(obj2);
@@ -61,8 +61,8 @@ class CollisionDetection {
         }
 
         if (xCollide && yCollide) {
-          if(obj2 instanceof Hunger) 
-            ((Hunger)obj2).addSpeed((Player)obj1);    
+          if(obj2 instanceof Food) 
+            ((Food)obj2).addSpeed((Player)obj1);    
           return true;
         }
       }

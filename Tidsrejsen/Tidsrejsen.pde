@@ -1,7 +1,7 @@
 Player p1;
 Player p2;
 
-Hunger hunger;
+Food food;
 
 PImage startside;
 
@@ -13,13 +13,12 @@ void setup () {
   p1 = new Player(new PVector(50, 50), new PVector(50, 50), 0);
   p2 = new Player(new PVector(150, 150), new PVector(50, 50), 1);
   
-  hunger = new Hunger(new PVector(250, 250), new PVector(50, 50), 2);
- 
+  food = new Food(new PVector(250, 250), new PVector(50, 50), 2);
 }
 
 void draw () {
   background(startside);
-  for (CollisionDetection obj : hitBoxObjects) {
+  for (GameObject obj : hitBoxObjects) {
     obj.customDraw();
   }
   controls();

@@ -1,4 +1,4 @@
-class Player extends CollisionDetection {
+class Player extends GameObject {
   // PVector pos, size; lavet i collision
   PVector vel = new PVector(2, 2);
   String imageName;
