@@ -25,6 +25,7 @@ class Player extends GameObject {
       } while (collide(this, newPos, size, "player"));
     } else {
       pos.y -= vel.y;
+      super.updateThis(pos);
     }
   }
 
@@ -37,6 +38,7 @@ class Player extends GameObject {
       } while (collide(this, newPos, size, "player"));
     } else {
       pos.y += vel.y;
+      super.updateThis(pos);
     }
   }
 
@@ -49,6 +51,7 @@ class Player extends GameObject {
       } while (collide(this, newPos, size, "player"));
     } else {
       pos.x -= vel.x;
+      super.updateThis(pos);
     }
   }
 
@@ -61,6 +64,7 @@ class Player extends GameObject {
       } while (collide(this, newPos, size, "player"));
     } else {
       pos.x += vel.x;
+      super.updateThis(pos);
     }
   }
 }

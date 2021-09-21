@@ -18,10 +18,10 @@ class GameObject {
     x2 = pos_.x + size_.x;
     y1 = pos_.y;
     y2 = pos_.y + size_.y;
-    
+
     addToHitBoxObj();
   }
-  
+
   void updateThis(PVector pos_) {
     pos = pos_;
     x1 = pos_.x;
@@ -29,19 +29,18 @@ class GameObject {
     y1 = pos_.y;
     y2 = pos_.y + size.y;
   }
- 
+
   void addToHitBoxObj() {
     hitBoxObjects.add(this);
   }
-  
+
   void removeHitBoxObj() {
     hitBoxObjects.remove(this);
   }
-  
+
   void customDraw() {
-    
   }
-  
+
   boolean collide(GameObject obj1, PVector pos, PVector size, String type) {
     boolean xCollide = false;
     boolean yCollide = false;
@@ -61,7 +60,7 @@ class GameObject {
         }
 
         if (xCollide && yCollide) {
-          if(obj2 instanceof Food) 
+          if (obj2 instanceof Food) 
             ((Food)obj2).addSpeed((Player)obj1);    
           return true;
         }
