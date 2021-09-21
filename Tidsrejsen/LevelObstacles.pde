@@ -13,7 +13,7 @@ class Food extends LevelObstacle {
     id = id_;
     pos = pos_;
     size = size_;
-    
+
     super.init(id_, pos, size, "obstacle");
   }
 

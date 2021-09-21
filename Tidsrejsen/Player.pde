@@ -46,7 +46,7 @@ class Player extends GameObject {
     PVector newPos = pos;
     newPos.x -= vel.x;
     if (collide(this, newPos, size, "player")) {
-      do{
+      do {
         pos.x += vel.x;
       } while (collide(this, newPos, size, "player"));
     } else {
@@ -59,7 +59,7 @@ class Player extends GameObject {
     PVector newPos = pos;
     newPos.x += vel.x;
     if (collide(this, newPos, size, "player")) {
-      do{
+      do {
         pos.x -= vel.x;
       } while (collide(this, newPos, size, "player"));
     } else {
