@@ -1,6 +1,6 @@
 class Player extends CollisionDetection {
   // PVector pos, size; lavet i collision
-  PVector vel = new PVector(10, 10);
+  PVector vel = new PVector(2, 2);
   String imageName;
   int points;
   int hitBoxObjIdx; // Indekset hvor denne sprite ligger
@@ -10,12 +10,12 @@ class Player extends CollisionDetection {
     size = size_;
     id = id_;
 
-    hitBoxObjIdx = addHitBoxObject(id, pos, size, "player", new Runnable() { public void run() {}});
+    Runnable customRunnable = new Runnable() { public void run() {}};
+    super.init(id_, pos, size, "player", customRunnable);
   }
 
-  void update () {
+  void customDraw() {
     rect(pos.x, pos.y, size.x, size.y);
-    updateHitBoxObject(hitBoxObjIdx, pos, size);
   }
 
   void moveUp() {

@@ -1,49 +1,51 @@
-ArrayList<HitBoxObject> hitBoxObjects = new ArrayList<HitBoxObject>();
-
-class HitBoxObject {
-  int id;
-  String type; 
-  float x1, x2, y1, y2;
-  Runnable func;
-
-  HitBoxObject (int id_, PVector pos_, PVector size_, String type_, Runnable func_) {
-    id = id_;
-    type = type_;
-    func = func_;
-    x1 = pos_.x;
-    x2 = pos_.x + size_.x;
-    y1 = pos_.y;
-    y2 = pos_.y + size_.y;
-  }
-
-  void update(PVector pos_, PVector size_) {
-    x1 = pos_.x;
-    x2 = pos_.x + size_.x;
-    y1 = pos_.y;
-    y2 = pos_.y + size_.y;
-  }
-}
+ArrayList<CollisionDetection> hitBoxObjects = new ArrayList<CollisionDetection>();
 
 class CollisionDetection {
   int id;
   PVector pos, size;
+  float x1, x2, y1, y2;
+  String type;
+  Runnable func;
+
   CollisionDetection () {
   }
 
-  int addHitBoxObject(int id, PVector pos, PVector size, String type, Runnable func) {
-    hitBoxObjects.add(new HitBoxObject(id, pos, size, type, func));
-    return hitBoxObjects.size() - 1;
+  void init(int id_, PVector pos_, PVector size_, String type_, Runnable func_) {
+    id = id_;
+    pos = pos_;
+    size = size_;
+    type = type_;
+    x1 = pos_.x;
+    x2 = pos_.x + size_.x;
+    y1 = pos_.y;
+    y2 = pos_.y + size_.y;
+    func = func_;
   }
-
-  void updateHitBoxObject(int idx, PVector pos, PVector size) {
-    HitBoxObject obj = hitBoxObjects.get(idx);
-    obj.update(pos, size);
+  
+  void updateThis(PVector pos_) {
+    pos = pos_;
+    x1 = pos_.x;
+    x2 = pos_.x + size.x;
+    y1 = pos_.y;
+    y2 = pos_.y + size.y;
   }
-
+ 
+  void addToHitBoxObj() {
+    hitBoxObjects.add(this);
+  }
+  
+  void removeHitBoxObj() {
+    hitBoxObjects.remove(this);
+  }
+  
+  void customDraw() {
+    
+  }
+  
   boolean collide(int id, PVector pos, PVector size, String type) {
     boolean xCollide = false;
     boolean yCollide = false;
-    for (HitBoxObject obj : hitBoxObjects) {
+    for (CollisionDetection obj : hitBoxObjects) {
       xCollide = false;
       yCollide = false;
       if (obj.id != id) {
@@ -58,7 +60,7 @@ class CollisionDetection {
         }
 
         if (xCollide && yCollide) {
-          obj.func.run();         
+          obj.func.run();    
           return true;
         }
       }
