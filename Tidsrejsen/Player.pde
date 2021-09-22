@@ -1,11 +1,12 @@
 class Player extends GameObject {
   // PVector pos, size; lavet i collision
-  PVector vel = new PVector(2, 10);
-  PVector gravity = new PVector(0,0.1);
+  PVector vel = new PVector(2, 0);
+  PVector gravity = new PVector(0,0.2);
   String imageName;
   int points;
   int hitBoxObjIdx; // Indekset hvor denne sprite ligger
-  public boolean canJump=false, test=false;
+  public boolean canJump=false, isJumping=false;
+  
 
   Player (PVector pos_, PVector size_, int id_) {
     pos = pos_;
@@ -15,8 +16,8 @@ class Player extends GameObject {
     super.init(id_, pos, size, "player");
   }
 
-  void customDraw() { //<>//
-    if(pos.y + size.y < height) //<>//
+  void customDraw() { //<>// //<>//
+    if(pos.y + size.y < height)
     {
       vel.y+=gravity.y;
       pos.y+=vel.y;
@@ -28,23 +29,25 @@ class Player extends GameObject {
       vel.y=2;
       pos.y= (height-size.y);
       canJump=true;
+      isJumping=false;
     }
     //println(pos.y + "  " + vel.y);
     rect(pos.x, pos.y, size.x, size.y);
   }
 
   void moveUp() {
-    PVector newPos = pos.copy();;
+    PVector newPos = pos.copy();; //<>//
     newPos.y -= vel.y;
-    if (collide(this, newPos, size, "player")) { //<>//
+    if (collide(this, newPos, size, "player")) {
       do {
         newPos.y += vel.y;
       } while (collide(this, newPos, size, "player"));
     } else if (canJump) {
-      pos.y -= vel.y+100;
-      canJump=false;
+      vel.y=-10;
+      canJump=false; //<>//
+      isJumping=true;
       super.updateThis(pos);
-    } //<>//
+    }
   }
 
   void moveDown() {
