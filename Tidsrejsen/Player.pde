@@ -1,9 +1,11 @@
 class Player extends CollisionDetection {
   // PVector pos, size; lavet i collision
-  PVector vel = new PVector(2, 2);
+  PVector vel = new PVector(2, 10);
+  PVector gravity = new PVector(0,0.1);
   String imageName;
   int points;
   int hitBoxObjIdx; // Indekset hvor denne sprite ligger
+  public boolean canJump=false, test=false;
 
   Player (PVector pos_, PVector size_, int id_) {
     pos = pos_;
@@ -14,24 +16,41 @@ class Player extends CollisionDetection {
     super.init(id_, pos, size, "player", customRunnable);
   }
 
-  void customDraw() {
+  void customDraw() { //<>//
+    if(pos.y + size.y < height)
+    {
+      vel.y+=gravity.y;
+      pos.y+=vel.y;
+    //println(frameRate);
+    //canJump=false;
+    }
+    if(pos.y + size.y >= height){
+      vel.x=2;
+      vel.y=2;
+      pos.y= (height-size.y);
+      canJump=true;
+    }
+    //println(pos.y + "  " + vel.y);
     rect(pos.x, pos.y, size.x, size.y);
   }
 
   void moveUp() {
-    PVector newPos = pos;
-    newPos.y -= vel.y;
+    PVector newPos = pos.copy();
+    newPos.y -= vel.y; //<>//
     if (collide(id, newPos, size, "player")) {
       do {
-        pos.y += vel.y;
+        newPos.y += vel.y;
       } while (collide(id, newPos, size, "player"));
-    } else {
-      pos.y -= vel.y;
+    }
+    
+    if ( canJump == true) {
+      pos.y -= vel.y+100; //<>//
+      canJump=false;
     }
   }
 
   void moveDown() {
-    PVector newPos = pos;
+    PVector newPos = pos.copy();
     newPos.y += vel.y;
     if (collide(id, newPos, size, "player")) {
       do {

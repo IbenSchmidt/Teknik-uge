@@ -15,7 +15,7 @@ void keyPressed () {
     d = true;
   }
   if (keyCode==UP) {
-    up = true;
+      up = true;    
   }
   if (keyCode==LEFT) {
     left = true;
@@ -68,7 +68,6 @@ void controls () {
   if (a) {
     p1.moveLeft();
   }
-
   if (up) {
     p2.moveUp();
   }

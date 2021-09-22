@@ -11,9 +11,10 @@ void setup () {
   startside = loadImage("images/Startside.png");
 
   p1 = new Player(new PVector(50, 50), new PVector(50, 50), 0);
-  p2 = new Player(new PVector(150, 150), new PVector(50, 50), 1);
+  p2 = new Player(new PVector(250, 150), new PVector(50, 50), 1);
   
   hunger = new Hunger(new PVector(250, 250), new PVector(50, 50), 2);
+  rectMode(CORNER);
   
   hitBoxObjects.add(p1);
   hitBoxObjects.add(p2);
@@ -22,8 +23,9 @@ void setup () {
 
 void draw () {
   background(startside);
-  for (CollisionDetection obj : hitBoxObjects) {
+
+   controls();
+     for (CollisionDetection obj : hitBoxObjects) {
     obj.customDraw();
   }
-  controls();
 }

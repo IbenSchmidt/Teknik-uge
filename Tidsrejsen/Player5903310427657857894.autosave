@@ -1,0 +1,75 @@
+class Player extends CollisionDetection {
+  // PVector pos, size; lavet i collision
+  PVector vel = new PVector(2, 2);
+  PVector gravity = new PVector(0, 0.02);
+  String imageName;
+  int points;
+  int hitBoxObjIdx; // Indekset hvor denne sprite ligger
+  boolean canJump = true;
+
+  Player (PVector pos_, PVector size_, int id_) {
+    pos = pos_;
+    size = size_;
+    id = id_;
+
+    hitBoxObjIdx = addHitBoxObject(id, pos, size);
+  }
+
+  void update () {
+    if(pos.y+size.y<height){
+    vel.y+=gravity.y;
+    pos.y+=vel.y;
+    if(pos.y+size.y>height) vel.y=2;
+    }
+    rect(pos.x, pos.y, size.x, size.y);
+    updateHitBoxObject(hitBoxObjIdx, pos, size);
+  }
+
+  void moveUp() {
+    PVector newPos = pos;
+    newPos.y -= vel.y;
+    if (collide(id, newPos, size)||newPos.y<0) {
+      do {
+        pos.y += vel.y;
+      } while (collide(id, newPos, size));
+    } else {
+      pos.y -= vel.y;
+    }
+  }
+
+  void moveDown() {
+    PVector newPos = pos;
+    newPos.y += vel.y;
+    if (collide(id, newPos, size)||newPos.y+size.y>height) {
+      do {
+        pos.y -= vel.y;
+      } while (collide(id, newPos, size));
+    } else {
+      pos.y += vel.y;
+    }
+  }
+
+  void moveLeft() {
+    PVector newPos = pos;
+    newPos.x -= vel.x;
+    if (collide(id, newPos, size)||newPos.x<0) {
+      do{
+        pos.x += vel.x;
+      } while (collide(id, newPos, size));
+    } else {
+      pos.x -= vel.x;
+    }
+  }
+
+  void moveRight() {
+    PVector newPos = pos;
+    newPos.x += vel.x;
+    if (collide(id, newPos, size)||newPos.x+size.x>width) {
+      do{
+        pos.x -= vel.x;
+      } while (collide(id, newPos, size));
+    } else {
+      pos.x += vel.x;
+    }
+  }
+}
