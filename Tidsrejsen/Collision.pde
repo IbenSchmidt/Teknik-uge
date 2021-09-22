@@ -61,7 +61,7 @@ class GameObject {
 
         if (xCollide && yCollide) {
           if (obj2 instanceof Food) 
-            ((Food)obj2).addSpeed((Player)obj1);    
+            ((Food)obj2).function((Player)obj1);    
           return true;
         }
       }
