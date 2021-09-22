@@ -1,7 +1,7 @@
 class Player extends GameObject {
   // PVector pos, size; lavet i collision
   PVector vel = new PVector(2, 0);
-  PVector gravity = new PVector(0,0.2);
+  PVector gravity = new PVector(0,0.1);
   String imageName;
   int points;
   int hitBoxObjIdx; // Indekset hvor denne sprite ligger
@@ -43,7 +43,7 @@ class Player extends GameObject {
         newPos.y += vel.y;
       } while (collide(this, newPos, size, "player"));
     } else if (canJump) {
-      vel.y=-10;
+      vel.y=-6;
       canJump=false; //<>//
       isJumping=true;
       super.updateThis(pos);
