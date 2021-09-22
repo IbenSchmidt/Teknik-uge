@@ -22,6 +22,8 @@ class Food extends LevelObstacle {
   }
 
   void function(Player otherObj) {
+    println(random(1));
+
     // Tilføj fart i til spilleren
     otherObj.vel.add(new PVector(1, 1));
 

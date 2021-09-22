@@ -31,6 +31,8 @@ class Player extends GameObject {
     }
     //println(pos.y + "  " + vel.y);
     rect(pos.x, pos.y, size.x, size.y);
+    
+    super.updateThis(pos);
   }
 
   void moveUp() {
@@ -43,6 +45,7 @@ class Player extends GameObject {
     } else if (canJump) {
       pos.y -= vel.y+100;
       canJump=false;
+      // obj1.getClass().getSimpleName() != obj2.getClass().getSimpleName()
       super.updateThis(pos);
     } //<>//
   }

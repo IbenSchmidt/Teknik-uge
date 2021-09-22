@@ -47,7 +47,6 @@ class GameObject {
     for (GameObject obj2 : hitBoxObjects) {
       xCollide = false;
       yCollide = false;
-      println(obj2);
       if (obj2.id != id) {
         // Tjek om der er collision på x-aksen
         if (pos.x >= obj2.x1 && pos.x <= obj2.x2 || pos.x + size.x >= obj2.x1 && pos.x + size.x <= obj2.x2) {
@@ -59,7 +58,7 @@ class GameObject {
           yCollide = true;
         }
 
-        if (xCollide && yCollide) {
+        if (xCollide && yCollide && !(obj2 instanceof Player)) {
           if (obj2 instanceof Food) 
             ((Food)obj2).function((Player)obj1);    
           return true;
