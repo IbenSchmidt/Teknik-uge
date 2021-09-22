@@ -13,6 +13,8 @@ void setup () {
 
   Food food = new Food(new PVector(250, height - 150), new PVector(50, 50), 2);;
   
+  Wall wall = new Wall(new PVector(550, height - 50), new PVector(50, 50), 2);;
+  
   println(hitBoxObjects);
 }
 

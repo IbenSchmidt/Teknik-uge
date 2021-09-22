@@ -8,6 +8,20 @@ class LevelObstacle extends GameObject {
   String imageName;
 }
 
+class Wall extends LevelObstacle {
+  Wall (PVector pos_, PVector size_, int id_) {
+    id = id_;
+    pos = pos_;
+    size = size_;
+
+    super.init(id_, pos, size, "wall");
+  }
+
+  void customDraw() {
+    rect(pos.x, pos.y, size.x, size.y);
+  }
+}
+
 class Food extends LevelObstacle {
   Food (PVector pos_, PVector size_, int id_) {
     id = id_;
