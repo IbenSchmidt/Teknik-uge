@@ -11,7 +11,9 @@ void setup () {
   p1 = new Player(new PVector(50, 150), new PVector(50, 50), 0);
   p2 = new Player(new PVector(150, 250), new PVector(50, 50), 1);
 
-  Food food = new Food(new PVector(250, 250), new PVector(50, 50), 2);;
+  Food food = new Food(new PVector(250, height - 150), new PVector(50, 50), 2);;
+  
+  println(hitBoxObjects);
 }
 
 void draw () {

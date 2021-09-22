@@ -6,7 +6,7 @@ class Player extends GameObject {
   int points;
   int hitBoxObjIdx; // Indekset hvor denne sprite ligger
   public boolean canJump=false, isJumping=false;
-  
+
 
   Player (PVector pos_, PVector size_, int id_) {
     pos = pos_;
@@ -33,6 +33,8 @@ class Player extends GameObject {
     }
     //println(pos.y + "  " + vel.y);
     rect(pos.x, pos.y, size.x, size.y);
+
+    super.updateThis(pos);
   }
 
   void moveUp() {
