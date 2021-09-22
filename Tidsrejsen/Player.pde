@@ -25,14 +25,14 @@ class Player extends GameObject {
     canJump=false;
     }
     if(pos.y + size.y >= height){
-      vel.x=2;
       vel.y=2;
       pos.y= (height-size.y);
       canJump=true;
       isJumping=false;
     }
     //println(pos.y + "  " + vel.y);
-    rect(pos.x, pos.y, size.x, size.y);
+    //rect(pos.x, pos.y, size.x, size.y);
+    image(womanFirstLevel,pos.x,pos.y);
 
     super.updateThis(pos);
   }
@@ -66,7 +66,7 @@ class Player extends GameObject {
   }
 
   void moveLeft() {
-    PVector newPos = pos;
+    PVector newPos = pos.copy();
     newPos.x -= vel.x;
     if (collide(this, newPos, size, "player")) {
       do {
@@ -79,7 +79,7 @@ class Player extends GameObject {
   }
 
   void moveRight() {
-    PVector newPos = pos;
+    PVector newPos = pos.copy();
     newPos.x += vel.x;
     if (collide(this, newPos, size, "player")) {
       do {
