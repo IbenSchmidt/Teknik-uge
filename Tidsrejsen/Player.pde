@@ -1,5 +1,6 @@
 class Player extends GameObject {
   // PVector pos, size; lavet i collision
+  PVector oldPos;
   PVector vel = new PVector(2, 0);
   PVector gravity = new PVector(0,0.1);
   String imageName;
@@ -17,12 +18,29 @@ class Player extends GameObject {
   }
 
   void customDraw() {
-    // Tilføj tyngdekraft når man er over jorden
+    // Tilføj tyngdekraft når man er over jorden      
+    if (oldPos != pos) {
+      // If collision
+      if (collide(this, pos, size, "Player")) {
+        pos = oldPos.copy(); 
+      } else {
+        oldPos = pos.copy();
+      }
+    }
+    
+    gravity_mechanics();
+    
+    rect(pos.x, pos.y, size.x, size.y);
+    super.updateThis(pos);
+  }
+  
+  void gravity_mechanics() {
     if (pos.y + size.y < height) {
       // Bevæg kun hvis man ikke rammer noget på vej ned
       PVector newPos = pos.copy();
       newPos.y += vel.y;
-      boolean collision = collide(this, newPos, size, "Player");
+      boolean collision = false;// collide(this, newPos, size, "Player");
+
       if (!collision) {
         vel.y+=gravity.y;
         pos.y+=vel.y;
@@ -31,8 +49,8 @@ class Player extends GameObject {
         canJump = true;
         isJumping = false;
       }
-    }    
-
+    }
+    
     // Tjekker hvis ryger ud for skærmen på y-aksen 
     if (pos.y + size.y >= height-11) {
       vel.y=0;
@@ -40,21 +58,10 @@ class Player extends GameObject {
       canJump=true;
       isJumping=false;
     }
-    
-    
-    rect(pos.x, pos.y, size.x, size.y);
-    super.updateThis(pos);
   }
 
   void moveUp() {
-    PVector newPos = pos.copy();
-    ; //<>//
-    newPos.y -= vel.y;
-    if (collide(this, newPos, size, "player")) {
-      do {
-        newPos.y += vel.y;
-      } while (collide(this, newPos, size, "player"));
-    } else if (canJump) {
+    if (!isJumping) { //<>//
       vel.y=-6;
       canJump=false; //<>//
       isJumping=true;
@@ -63,41 +70,17 @@ class Player extends GameObject {
   }
 
   void moveDown() {
-    PVector newPos = pos.copy();
-    newPos.y += vel.y;
-    if (collide(this, newPos, size, "player")) {
-      do {
-        pos.y -= vel.y;
-      } while (collide(this, newPos, size, "player"));
-    } else {
-      pos.y += vel.y;
-      super.updateThis(pos);
-    }
+    pos.y += vel.y;
+    super.updateThis(pos);
   }
 
   void moveLeft() {
-    PVector newPos = pos;
-    newPos.x -= vel.x;
-    if (collide(this, newPos, size, "player")) {
-      do {
-        pos.x += vel.x;
-      } while (collide(this, newPos, size, "player"));
-    } else {
-      pos.x -= vel.x;
-      super.updateThis(pos);
-    }
+    pos.x -= vel.x;
+    super.updateThis(pos);
   }
 
   void moveRight() {
-    PVector newPos = pos;
-    newPos.x += vel.x;
-    if (collide(this, newPos, size, "player")) {
-      do {
-        pos.x -= vel.x;
-      } while (collide(this, newPos, size, "player"));
-    } else {
-      pos.x += vel.x;
-      super.updateThis(pos);
-    }
+    pos.x += vel.x;
+    super.updateThis(pos);
   }
 }

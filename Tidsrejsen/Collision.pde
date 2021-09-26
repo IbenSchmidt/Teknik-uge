@@ -43,6 +43,7 @@ class GameObject {
   boolean collide(GameObject obj1, PVector pos, PVector size, String type) {
     boolean xCollide = false;
     boolean yCollide = false;
+
     for (GameObject obj2 : hitBoxObjects) {
       xCollide = false;
       yCollide = false;
@@ -59,7 +60,8 @@ class GameObject {
 
         if (xCollide && yCollide && !(obj2 instanceof Player)) {
           if (obj2 instanceof Food) 
-            ((Food)obj2).function((Player)obj1);    
+            ((Food)obj2).function((Player)obj1);
+
           return true;
         }
       }
