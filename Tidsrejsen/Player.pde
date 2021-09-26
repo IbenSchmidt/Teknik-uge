@@ -18,6 +18,13 @@ class Player extends GameObject {
 
   void customDraw() {
     // Tilføj tyngdekraft når man er over jorden
+    gravity_mechanics();
+    
+    rect(pos.x, pos.y, size.x, size.y);
+    super.updateThis(pos);
+  }
+  
+  void gravity_mechanics() {
     if (pos.y + size.y < height) {
       // Bevæg kun hvis man ikke rammer noget på vej ned
       PVector newPos = pos.copy();
@@ -39,11 +46,7 @@ class Player extends GameObject {
       pos.y= (height-size.y);
       canJump=true;
       isJumping=false;
-    }
-    
-    
-    rect(pos.x, pos.y, size.x, size.y);
-    super.updateThis(pos);
+    }    
   }
 
   void moveUp() {
@@ -58,9 +61,9 @@ class Player extends GameObject {
       vel.y=-6;
       canJump=false; //<>//
       isJumping=true;
-      super.updateThis(pos);
+      super.updateThis(pos); //<>//
     }
-  }
+  } //<>//
 
   void moveDown() {
     PVector newPos = pos.copy();
