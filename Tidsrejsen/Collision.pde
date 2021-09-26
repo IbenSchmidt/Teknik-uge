@@ -38,8 +38,7 @@ class GameObject {
     hitBoxObjects.remove(this);
   }
 
-  void customDraw() {
-  }
+  void customDraw() {}
 
   boolean collide(GameObject obj1, PVector pos, PVector size, String type) {
     boolean xCollide = false;

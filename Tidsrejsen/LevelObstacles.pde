@@ -42,6 +42,6 @@ class Food extends LevelObstacle {
     otherObj.vel.add(new PVector(1, 1));
 
     // Fjern dette objekt fra spillet
-    hitBoxObjects.remove(this);
+    // removeHitBoxObj();
   }
 }

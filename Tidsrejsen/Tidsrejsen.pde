@@ -13,7 +13,7 @@ void setup () {
 
   Food food = new Food(new PVector(250, height - 150), new PVector(50, 50), 2);;
   
-  Wall wall = new Wall(new PVector(550, height - 50), new PVector(50, 50), 2);;
+  Wall wall = new Wall(new PVector(550, height - 150), new PVector(70, 20), 2);;
   
   println(hitBoxObjects);
 }
@@ -23,7 +23,9 @@ void draw () {
   for (GameObject obj : hitBoxObjects) {
     obj.customDraw();
   }
+  
   controls();
+  
   if(p1.isJumping){
     p1.vel.y+=p1.gravity.y;
     p1.pos.y+=p1.vel.y;

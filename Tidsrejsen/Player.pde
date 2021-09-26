@@ -17,33 +17,32 @@ class Player extends GameObject {
   }
 
   void customDraw() {
+    // Tilføj tyngdekraft når man er over jorden
     if (pos.y + size.y < height) {
-      vel.y+=gravity.y;
-      pos.y+=vel.y;
-      //println(frameRate);
-      canJump=false;
-    }
+      // Bevæg kun hvis man ikke rammer noget på vej ned
+      PVector newPos = pos.copy();
+      newPos.y += vel.y;
+      boolean collision = collide(this, newPos, size, "Player");
+      if (!collision) {
+        vel.y+=gravity.y;
+        pos.y+=vel.y;
+        canJump=false;
+      } else {
+        canJump = true;
+        isJumping = false;
+      }
+    }    
 
-    PVector newPos = pos.copy();
-    newPos.y -= vel.y;
-    boolean collision = collide(this, newPos, size, "Player");
-    if (collision) {
-      println(collision, random(1));
-      pos.y= (height-2*size.y);
-      canJump=true;
-      isJumping=false;
-    }
-
+    // Tjekker hvis ryger ud for skærmen på y-aksen 
     if (pos.y + size.y >= height) {
-      vel.x=2;
-      vel.y=2;
+      vel.y=0;
       pos.y= (height-size.y);
       canJump=true;
       isJumping=false;
     }
-    //println(pos.y + "  " + vel.y);
+    
+    
     rect(pos.x, pos.y, size.x, size.y);
-
     super.updateThis(pos);
   }
 

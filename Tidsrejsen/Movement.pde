@@ -57,6 +57,7 @@ void keyReleased () {
 
 void controls () {
   if (w) {
+    println("asdas");
     p1.moveUp();
   }
   if (s) {
