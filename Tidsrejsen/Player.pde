@@ -34,9 +34,9 @@ class Player extends GameObject {
     }    
 
     // Tjekker hvis ryger ud for skærmen på y-aksen 
-    if (pos.y + size.y >= height) {
+    if (pos.y + size.y >= height-11) {
       vel.y=0;
-      pos.y= (height-size.y);
+      pos.y= (height-size.y-11);
       canJump=true;
       isJumping=false;
     }
