@@ -16,15 +16,27 @@ class Player extends GameObject {
     super.init(id_, pos, size, "player");
   }
 
-  void customDraw() { //<>// //<>//
-    if(pos.y + size.y < height)
-    {
+  void customDraw() {
+    if (pos.y + size.y < height) {
       vel.y+=gravity.y;
       pos.y+=vel.y;
-    //println(frameRate);
-    canJump=false;
+      //println(frameRate);
+      canJump=false;
     }
     if(pos.y + size.y >= height){
+
+    PVector newPos = pos.copy();
+    newPos.y -= vel.y;
+    boolean collision = collide(this, newPos, size, "Player");
+    if (collision) {
+      println(collision, random(1));
+      pos.y= (height-2*size.y);
+      canJump=true;
+      isJumping=false;
+    }
+
+    if (pos.y + size.y >= height) {
+      vel.x=2;
       vel.y=2;
       pos.y= (height-size.y);
       canJump=true;
@@ -38,7 +50,8 @@ class Player extends GameObject {
   }
 
   void moveUp() {
-    PVector newPos = pos.copy();; //<>//
+    PVector newPos = pos.copy();
+    ; //<>//
     newPos.y -= vel.y;
     if (collide(this, newPos, size, "player")) {
       do {
