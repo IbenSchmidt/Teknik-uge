@@ -10,7 +10,6 @@ PImage game_background;
 
 int level = 1;
 
-
 void setup () {
   size(1396, 786);
   frameRate(60);

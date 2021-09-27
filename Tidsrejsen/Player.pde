@@ -39,7 +39,7 @@ class Player extends GameObject {
       // Bevæg kun hvis man ikke rammer noget på vej ned
       PVector newPos = pos.copy();
       newPos.y += vel.y;
-      boolean collision = false;// collide(this, newPos, size, "Player");
+      boolean collision = collide(this, newPos, size, "Player");
 
       if (!collision) {
         vel.y+=gravity.y;
