@@ -4,7 +4,7 @@ class Player extends GameObject {
   PVector vel = new PVector(2, 0);
   PVector gravity = new PVector(0,0.1);
   PImage playerImage;
-  int points;
+  int points = 0;
   int hitBoxObjIdx; // Indekset hvor denne sprite ligger
   public boolean canJump=false, isJumping=false;
 

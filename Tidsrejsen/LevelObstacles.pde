@@ -17,7 +17,7 @@ class Wall extends LevelObstacle {
   }
 
   void customDraw() {
-    // rect(pos.x, pos.y, size.x, size.y);
+    rect(pos.x, pos.y, size.x, size.y);
   }
 }
 
@@ -42,5 +42,27 @@ class Food extends LevelObstacle {
     // Fjern dette objekt fra spillet
     pos = new PVector(-100,-100);
     updateThis(new PVector(-100,-100));
+  }
+}
+
+class Star extends LevelObstacle {
+  Star (PVector pos_, PVector size_) {
+    pos = pos_;
+    size = size_;
+
+    super.init(pos, size, "obstacle");
+  }
+
+  void customDraw() {
+    // rect(pos.x, pos.y, size.x, size.y);
+  }
+
+  void function(Player otherObj) {
+    println(random(1));
+
+    otherObj.points += 1;
+
+    // Næste bane
+    next_level();
   }
 }
