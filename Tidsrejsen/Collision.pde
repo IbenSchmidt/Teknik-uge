@@ -1,5 +1,7 @@
 ArrayList<GameObject> hitBoxObjects = new ArrayList<GameObject>();
 
+
+
 class GameObject {
   int id;
   PVector pos, size;
@@ -9,8 +11,8 @@ class GameObject {
   GameObject () {
   }
 
-  void init(int id_, PVector pos_, PVector size_, String type_) {
-    id = id_;
+  void init(PVector pos_, PVector size_, String type_) {
+    id = createId();
     pos = pos_;
     size = size_;
     type = type_;
@@ -20,6 +22,10 @@ class GameObject {
     y2 = pos_.y + size_.y;
 
     addToHitBoxObj();
+  }
+
+  int createId() {
+    return hitBoxObjects.size();
   }
 
   void updateThis(PVector pos_) {

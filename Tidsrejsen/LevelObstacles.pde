@@ -9,30 +9,28 @@ class LevelObstacle extends GameObject {
 }
 
 class Wall extends LevelObstacle {
-  Wall (PVector pos_, PVector size_, int id_) {
-    id = id_;
+  Wall (PVector pos_, PVector size_) {
     pos = pos_;
     size = size_;
 
-    super.init(id_, pos, size, "wall");
+    super.init(pos, size, "wall");
   }
 
   void customDraw() {
-    rect(pos.x, pos.y, size.x, size.y);
+    // rect(pos.x, pos.y, size.x, size.y);
   }
 }
 
 class Food extends LevelObstacle {
-  Food (PVector pos_, PVector size_, int id_) {
-    id = id_;
+  Food (PVector pos_, PVector size_) {
     pos = pos_;
     size = size_;
 
-    super.init(id_, pos, size, "obstacle");
+    super.init(pos, size, "obstacle");
   }
 
   void customDraw() {
-    rect(pos.x, pos.y, size.x, size.y);
+    // rect(pos.x, pos.y, size.x, size.y);
   }
 
   void function(Player otherObj) {

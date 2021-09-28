@@ -8,20 +8,19 @@ String page = "start";
 PImage main_background;
 PImage game_background;
 
-int level = 1;
+int level = 2;
 
 void setup () {
   size(1396, 786);
   frameRate(60);
   main_background = loadImage("images/Startside.png");
   game_background = loadImage("images/Bane1.png");
-
-  p1 = new Player(new PVector(50, 150), new PVector(15, 44), 0);
-  p2 = new Player(new PVector(150, 250), new PVector(15, 44), 1);
-
-  Food food = new Food(new PVector(250, height - 150), new PVector(50, 50), 2);
   
-  Wall wall = new Wall(new PVector(550, height - 150), new PVector(70, 20), 2);
+  next_level();
+  
+  // Food food = new Food(new PVector(250, height - 150), new PVector(50, 50));
+  
+  // Wall wall = new Wall(new PVector(550, height - 150), new PVector(70, 20));
   
   game_btn = new Button("game", new PVector(width/2, height/2 + 75), new PVector(176, 87));
 }
@@ -52,11 +51,22 @@ void draw () {
 }
 
 void next_level() {
+  // Reset gameobjects
+  hitBoxObjects = new ArrayList<GameObject>();
+  
   level += 1;
   
   // Update background
   game_background = loadImage("images/Bane" + level + ".png");
   
   // Update player images
+  p1 = new Player(new PVector(50, 150), new PVector(15, 44), "images/Man" + level + ".png");
+  p2 = new Player(new PVector(150, 250), new PVector(15, 44), "images/Woman" + level + ".png");
+
   // Show level specific obstacles
+  if (level == 2) {
+    loadLevel2();
+  } else if (level == 3) {
+    loadLevel3();
+  }
 }

@@ -3,18 +3,17 @@ class Player extends GameObject {
   PVector oldPos;
   PVector vel = new PVector(2, 0);
   PVector gravity = new PVector(0,0.1);
-  String imageName;
+  PImage playerImage;
   int points;
   int hitBoxObjIdx; // Indekset hvor denne sprite ligger
   public boolean canJump=false, isJumping=false;
 
-
-  Player (PVector pos_, PVector size_, int id_) {
+  Player (PVector pos_, PVector size_, String imageName_) {
     pos = pos_;
     size = size_;
-    id = id_;
+    playerImage = loadImage(imageName_);
 
-    super.init(id_, pos, size, "player");
+    super.init(pos, size, "player");
   }
 
   void customDraw() {
@@ -30,7 +29,8 @@ class Player extends GameObject {
     
     gravity_mechanics();
     
-    rect(pos.x, pos.y, size.x, size.y);
+    // show image here
+    image(playerImage, pos.x, pos.y);
     super.updateThis(pos);
   }
   
