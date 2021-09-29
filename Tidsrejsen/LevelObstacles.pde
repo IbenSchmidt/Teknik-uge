@@ -17,7 +17,7 @@ class Wall extends LevelObstacle {
   }
 
   void customDraw() {
-    rect(pos.x, pos.y, size.x, size.y);
+    //rect(pos.x, pos.y, size.x, size.y);
   }
 }
 
